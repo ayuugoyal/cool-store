@@ -5,6 +5,7 @@ import { Product } from '@/types'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import Image from 'next/image'
 
 interface ProductShowcaseProps {
   products: Product[]
@@ -47,10 +48,12 @@ export default function ProductShowcase({ products, addToCart }: ProductShowcase
               <CardTitle>{product.title}</CardTitle>
             </CardHeader>
             <CardContent className="flex-grow">
-              <img
+              <Image
                 src={product.image}
                 alt={product.title}
                 className="w-full h-48 object-contain mb-4"
+                width={400}
+                height={400}
               />
               <p className="text-sm text-gray-600 mb-2">{product.description}</p>
               <Badge variant="secondary">{product.category}</Badge>

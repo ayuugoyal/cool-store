@@ -32,7 +32,6 @@ export default function Navbar({ cartItems }: { cartItems: Product[] }) {
     { name: 'About', path: '/#about' },
   ]
 
-  const totalItems = cartItems.reduce((sum, item) => sum + (1), 0)
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * (1), 0)
 
 
