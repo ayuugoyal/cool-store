@@ -21,6 +21,7 @@ import { Separator } from '@/components/ui/separator'
 
 import { Badge } from '@/components/ui/badge'
 import { Product } from '@/types'
+import Image from 'next/image'
 
 export default function Navbar({ cartItems }: { cartItems: Product[] }) {
   const [isCartOpen, setIsCartOpen] = useState(false)
@@ -49,9 +50,8 @@ export default function Navbar({ cartItems }: { cartItems: Product[] }) {
               <Link
                 key={item.name}
                 href={item.path}
-                className={`text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium ${
-                  pathname === item.path ? 'bg-purple-100' : ''
-                }`}
+                className={`text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium ${pathname === item.path ? 'bg-purple-100' : ''
+                  }`}
               >
                 {item.name}
               </Link>
@@ -76,14 +76,20 @@ export default function Navbar({ cartItems }: { cartItems: Product[] }) {
                     You have item{cartItems.length !== 1 ? 's' : ''} in your cart.
                   </SheetDescription>
                 </SheetHeader>
-    <div className="mt-8 flex flex-col h-full">
+                <div className="mt-8 flex flex-col h-full">
                   <ScrollArea className="flex-grow">
                     {cartItems.length === 0 ? (
                       <p className="text-center text-gray-500">Your cart is empty</p>
                     ) : (
                       cartItems.map((item) => (
                         <div key={item.id} className="flex items-center py-4">
-                          <img src={item.image} alt={item.title} className="w-16 h-16 object-contain rounded-md" />
+                          <Image
+                            src={item.image}
+                            alt={item.title}
+                            className="w-16 h-16 object-contain rounded-md"
+                            width={64}
+                            height={64}
+                          />
                           <div className="ml-4 flex-grow">
                             <h3 className="font-medium text-sm">{item.title}</h3>
                             <p className="text-sm text-gray-500">${item.price.toFixed(2)}</p>
